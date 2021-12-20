@@ -1,2 +1,2 @@
-# metasphere-console
-metasphere-console
+# MetaSphere Console
+MetaSphere Console

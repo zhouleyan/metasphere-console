@@ -1,0 +1,53 @@
+{
+  "name": "metasphere-console",
+  "version": "0.0.1",
+  "description": "MetaSphere Console",
+  "main": "index.js",
+  "author": "zhouleyan",
+  "private": true,
+  "browserslist": [
+    "chrome >= 61",
+    "firefox >= 60",
+    "safari >= 11",
+    "edge >= 16"
+  ],
+  "engines": {
+    "node": ">=14.13.1"
+  },
+  "lint-staged": {
+    "src/**/*.less": "stylelint \"src/**/*.less\"",
+    "src/**/*.{js,jsx,ts,tsx}": "eslint"
+  },
+  "scripts": {
+    "lint-staged": "lint-staged",
+    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+    "lint:style": "stylelint --fix \"src/**/*.less\"",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ./src && yarn lint:style",
+    "tsc": "tsc"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/eslint-parser": "^7.16.5",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "eslint": "^8.5.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jest": "^25.3.0",
+    "eslint-plugin-jsdoc": "^37.3.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.3",
+    "postcss": "^8.4.5",
+    "postcss-less": "^5.0.0",
+    "stylelint": "^14.1.0",
+    "stylelint-config-css-modules": "^2.3.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^24.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
+    "stylelint-no-unsupported-browser-features": "^5.0.2",
+    "stylelint-order": "^5.0.0",
+    "typescript": "^4.5.4"
+  }
+}
