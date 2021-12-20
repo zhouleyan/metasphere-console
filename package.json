@@ -16,18 +16,21 @@
   },
   "lint-staged": {
     "src/**/*.less": "stylelint \"src/**/*.less\"",
-    "src/**/*.{js,jsx,ts,tsx}": "eslint"
+    "{src,server}/**/*.{js,jsx,ts,tsx}": "eslint --cache"
   },
   "scripts": {
     "lint-staged": "lint-staged",
-    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+    "precommit": "lint-staged",
+    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx {src,server}",
     "lint:style": "stylelint --fix \"src/**/*.less\"",
-    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ./src && yarn lint:style",
+    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx {src,server} && yarn lint:style",
     "tsc": "tsc"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
     "@babel/eslint-parser": "^7.16.5",
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "eslint": "^8.5.0",
