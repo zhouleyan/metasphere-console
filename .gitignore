@@ -112,3 +112,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# local config
+/server/local_config.yaml
