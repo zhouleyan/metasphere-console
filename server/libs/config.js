@@ -1,9 +1,10 @@
-import fs from 'fs';
-import yaml from 'js-yaml';
-import NodeCache from 'node-cache';
-import { merge } from 'lodash-es';
-import { APP_ROOT } from './global.js';
+const fs = require('fs');
+const yaml = require('js-yaml');
+const NodeCache = require('node-cache');
+const merge = require('lodash/merge');
+const path = require('path');
 
+const APP_ROOT = path.resolve(__dirname, '../../');
 const root = (dir) => `${APP_ROOT}/${dir}`.replace(/(\/+)/g, '/');
 
 const cache = global._msCache || new NodeCache();
@@ -45,11 +46,56 @@ const getConfig = (key = '') => {
   return key ? config[key] : config;
 };
 
-const getServerConfig = () => getConfig('server');
+const getServerConfig = () => getConfig('server') || {};
 
-export {
+const getHttp = () => {
+  const serverConfig = getServerConfig();
+  const { http } = serverConfig;
+  if (http && typeof http === 'object') {
+    return http;
+  }
+  return {};
+};
+
+const getHostname = () => {
+  const defaultHostname = 'localhost';
+  const { hostname } = getHttp();
+  if (hostname && typeof hostname === 'string') {
+    return hostname;
+  }
+  return defaultHostname;
+};
+
+const getPort = () => {
+  const defaultPort = '8000';
+  const { port } = getHttp();
+  if (port && typeof port === 'number') {
+    return port;
+  }
+  return defaultPort;
+};
+
+const getHttpStatic = () => {
+  const { httpStatic } = getHttp();
+  if (httpStatic && typeof httpStatic === 'object') {
+    return httpStatic;
+  }
+  return {};
+};
+
+const HOSTNAME = getHostname();
+const PORT = getPort();
+const HTTP_MODE = 'http';
+
+module.exports = {
   root,
   loadYaml,
   getConfig,
-  getServerConfig
+  getServerConfig,
+  getHttp,
+  getHttpStatic,
+  APP_ROOT,
+  HOSTNAME,
+  PORT,
+  HTTP_MODE
 };

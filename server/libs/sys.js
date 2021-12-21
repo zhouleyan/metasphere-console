@@ -1,4 +1,4 @@
-export const registerShutdown = (fn) => {
+const registerShutdown = (fn) => {
   let run = false;
 
   const wrapper = () => {
@@ -11,4 +11,8 @@ export const registerShutdown = (fn) => {
   process.on('SIGINT', wrapper);
   process.on('SIGTERM', wrapper);
   process.on('exit', wrapper);
+};
+
+module.exports = {
+  registerShutdown
 };

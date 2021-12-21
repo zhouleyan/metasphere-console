@@ -1,8 +1,8 @@
-import os from 'os';
+const os = require('os');
 
-export const interfaces = os.networkInterfaces();
+const interfaces = os.networkInterfaces();
 
-export const getNetworkAddress = () => {
+const getNetworkAddress = () => {
   for (const name of Object.keys(interfaces)) {
     for (const _interface of interfaces[name]) {
       const { address, family, internal } = _interface;
@@ -11,4 +11,9 @@ export const getNetworkAddress = () => {
       }
     }
   }
+};
+
+module.exports = {
+  interfaces,
+  getNetworkAddress
 };

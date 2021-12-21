@@ -1,11 +1,12 @@
-import Koa from 'koa';
-import http from 'http';
-import chalk from 'chalk';
-import boxen from 'boxen';
-import { info, warning, error } from './libs/logs.js';
-import { registerShutdown } from './libs/sys.js';
-import { getNetworkAddress } from './libs/net.js';
-import { PORT, HTTP_MODE } from './libs/global.js';
+const Koa = require('koa');
+const http = require('http');
+const boxen = require('boxen');
+const { info, warning, error, green, bold } =  require('./libs/logs');
+const { registerShutdown } = require('./libs/sys');
+const { getNetworkAddress } = require('./libs/net');
+const { PORT, HTTP_MODE } = require('./libs/config');
+
+const boot = require('./components/boot');
 
 
 global.MODE_DEV = process.env.NODE_ENV === 'development';
@@ -16,6 +17,11 @@ Koa.prototype.apply = function (module, ...rest) {
 };
 
 const app = new Koa();
+
+app.keys = ['ms->_<'];
+
+app
+  .apply(boot);
 
 const server = http.createServer(app.callback());
 
@@ -37,16 +43,16 @@ server.listen(PORT, (err) => {
     networkAddress = ip ? `${HTTP_MODE}://${ip}:${details.port}` : null;
   }
 
-  let message = chalk.green('Serving!');
+  let message = green('Serving!');
 
   if (localAddress) {
     const prefix = networkAddress ? '- ' : '';
     const space = networkAddress ? '            ' : '  ';
-    message += `\n\n${chalk.bold(`${prefix}Local:`)}${space}${localAddress}`;
+    message += `\n\n${bold(`${prefix}Local:`)}${space}${localAddress}`;
   }
 
   if (networkAddress) {
-    message += `\n${chalk.bold('- On Your Network:')}  ${networkAddress}`;
+    message += `\n${bold('- On Your Network:')}  ${networkAddress}`;
   }
 
   if (err) {
