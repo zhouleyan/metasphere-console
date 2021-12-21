@@ -1,4 +1,4 @@
 node_modules
 dist
 plop-templates
-.stylelintrc.js
+.stylelintrc.cjs
