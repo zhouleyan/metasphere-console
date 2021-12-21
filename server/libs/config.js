@@ -76,7 +76,7 @@ const getPort = () => {
 };
 
 const getHttpStatic = () => {
-  const { httpStatic } = getHttp();
+  const { 'static': httpStatic } = getHttp();
   if (httpStatic && typeof httpStatic === 'object') {
     return httpStatic;
   }
