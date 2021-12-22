@@ -1,9 +1,10 @@
 const compress = require('koa-compress');
 const mount = require('koa-mount');
+const render = require('koa-ejs');
 const serve = require('koa-static');
 const { constants } = require('zlib');
 
-const { getHttpStatic, root } = require('../libs/config');
+const { getHttpStatic, root, HTTP_MODE } = require('../libs/utils');
 
 module.exports = function (app) {
   app.use(
@@ -26,10 +27,17 @@ module.exports = function (app) {
           ctx.url
         )
       ) {
-        ctx.redirect(`http://${ctx.hostname}:8001${ctx.url}`);
+        ctx.redirect(`${HTTP_MODE}://${ctx.hostname}:8001${ctx.url}`);
       } else {
         await next();
       }
     });
   }
+
+  render(app, {
+    root: root('server/views'),
+    cache: !global.MODE_DEV,
+    layout: false,
+    viewExt: 'ejs'
+  });
 };

@@ -1,7 +1,10 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const NodeCache = require('node-cache');
+const get = require('lodash/get');
 const merge = require('lodash/merge');
+const isEmpty = require('lodash/isEmpty');
+const pick = require('lodash/pick');
 const path = require('path');
 
 const APP_ROOT = path.resolve(__dirname, '../../');
@@ -13,6 +16,8 @@ if (!global._msCache) {
 }
 
 const server_conf_key = 'ms-server-conf-key';
+const MANIFEST_CACHE_KEY_PREFIX = 'MANIFEST_CACHE_KEY_';
+const LOCALE_MANIFEST_CACHE_KEY = 'LOCALE_MANIFEST_CACHE_KEY';
 
 /**
  * Load yaml file.
@@ -45,6 +50,11 @@ const getConfig = (key = '') => {
   }
   return key ? config[key] : config;
 };
+
+const getCache = () => cache;
+
+const isValidReferer = (path) =>
+  !isEmpty(path) && path !== '/' && path.indexOf('/login') === -1;
 
 const getServerConfig = () => getConfig('server') || {};
 
@@ -87,13 +97,68 @@ const HOSTNAME = getHostname();
 const PORT = getPort();
 const HTTP_MODE = 'http';
 
+const safeParseJSON = (json, defaultValue) => {
+  let result;
+  try {
+    result = JSON.parse(json);
+    // eslint-disable-next-line no-empty
+  } catch (e) {}
+
+  if (!result && defaultValue !== undefined) {
+    return defaultValue;
+  }
+  return result;
+};
+
+const getManifest = (entry) => {
+  let manifestCache = cache.get(`${MANIFEST_CACHE_KEY_PREFIX}${entry}`);
+
+  if (!manifestCache) {
+    let data = {};
+    try {
+      const dataStream = fs.readFileSync(root('dist/manifest.json'));
+      data = safeParseJSON(dataStream.toString(), {});
+      // eslint-disable-next-line no-empty
+    } catch (err) {}
+    manifestCache = get(data, `entrypoints.${entry}`);
+    cache.set(`${MANIFEST_CACHE_KEY_PREFIX}${entry}`, manifestCache);
+  }
+
+  return manifestCache;
+};
+
+const getLocaleManifest = () => {
+  let manifestCache = cache.get(LOCALE_MANIFEST_CACHE_KEY);
+
+  if (!manifestCache) {
+    let data = {};
+    try {
+      const dataStream = fs.readFileSync(root('dist/manifest.locale.json'));
+      data = safeParseJSON(dataStream.toString(), {});
+      // eslint-disable-next-line no-empty
+    } catch (error) {}
+    const isLocale = (key) => key.startsWith('locale-');
+    manifestCache = pick(
+      data,
+      Object.keys(data).filter(isLocale)
+    );
+    cache.set(LOCALE_MANIFEST_CACHE_KEY, manifestCache);
+  }
+
+  return manifestCache;
+};
+
 module.exports = {
   root,
   loadYaml,
+  getCache,
   getConfig,
   getServerConfig,
   getHttp,
   getHttpStatic,
+  getManifest,
+  getLocaleManifest,
+  isValidReferer,
   APP_ROOT,
   HOSTNAME,
   PORT,

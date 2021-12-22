@@ -1,4 +1,4 @@
-import { getServerConfig } from '../libs/config';
+import { getServerConfig } from '../libs/utils';
 
 test('http.port is 8000', () => {
   const serverConfig = getServerConfig();

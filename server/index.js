@@ -4,7 +4,7 @@ const boxen = require('boxen');
 const { info, warning, error, green, bold } =  require('./libs/logs');
 const { registerShutdown } = require('./libs/sys');
 const { getNetworkAddress } = require('./libs/net');
-const { PORT, HTTP_MODE } = require('./libs/config');
+const { PORT, HTTP_MODE } = require('./libs/utils');
 
 const boot = require('./components/boot');
 
