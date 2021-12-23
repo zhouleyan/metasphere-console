@@ -1,22 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>
-    root
-  </title>
-  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
-  <style>
-  </style>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+    <title>
+        <%= title %>
+    </title>
+    <link href="<%= favicon %>" rel="icon" type="image/x-icon"/>
+    <style>
+        <%- include('../public/loading.css') %>
+    </style>
+    <style>
+    </style>
 </head>
 
 <body>
 <div id="root">
-  root
+    <%- include('./components/loading.ejs') %>
 </div>
 <script type="text/javascript">
+    <%- include('dummy.js') %>
 </script>
 </body>
 </html>

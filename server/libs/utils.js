@@ -32,6 +32,11 @@ const loadYaml = (filePath) => {
   }
 };
 
+const getCache = () => cache;
+
+const isValidReferer = (path) =>
+  !isEmpty(path) && path !== '/' && path.indexOf('/login') === -1;
+
 const getConfig = (key = '') => {
   let config = cache.get(server_conf_key);
   if (!config) {
@@ -51,16 +56,20 @@ const getConfig = (key = '') => {
   return key ? config[key] : config;
 };
 
-const getCache = () => cache;
+const getClientConfig = () => getConfig('client') || {};
 
-const isValidReferer = (path) =>
-  !isEmpty(path) && path !== '/' && path.indexOf('/login') === -1;
+const getTitle = () => {
+  const { title } = getClientConfig();
+  if (title && typeof title === 'string') {
+    return title;
+  }
+  return '';
+};
 
 const getServerConfig = () => getConfig('server') || {};
 
 const getHttp = () => {
-  const serverConfig = getServerConfig();
-  const { http } = serverConfig;
+  const { http } = getServerConfig();
   if (http && typeof http === 'object') {
     return http;
   }
@@ -153,6 +162,8 @@ module.exports = {
   loadYaml,
   getCache,
   getConfig,
+  getClientConfig,
+  getTitle,
   getServerConfig,
   getHttp,
   getHttpStatic,

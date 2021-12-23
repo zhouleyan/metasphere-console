@@ -6,6 +6,8 @@ const { registerShutdown } = require('./libs/sys');
 const { getNetworkAddress } = require('./libs/net');
 const { PORT, HTTP_MODE } = require('./libs/utils');
 
+const routes = require('./routes');
+
 const boot = require('./components/boot');
 
 
@@ -21,7 +23,8 @@ const app = new Koa();
 app.keys = ['ms->_<'];
 
 app
-  .apply(boot);
+  .apply(boot)
+  .use(routes.routes());
 
 const server = http.createServer(app.callback());
 
