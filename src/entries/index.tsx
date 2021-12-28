@@ -27,10 +27,10 @@ const render = (component: JSX.Element) => {
 
 render(<App />);
 
-// // @ts-ignore
-// module.hot &&
-// // @ts-ignore
-//   module.hot.accept('../core/App', () => {
-//     const NextApp = require('../core/App');
-//     render(<NextApp />);
-//   });
+// @ts-ignore
+module.hot &&
+// @ts-ignore
+  module.hot.accept('../core/App', () => {
+    const NextApp = require('../core/App');
+    render(<NextApp />);
+  });

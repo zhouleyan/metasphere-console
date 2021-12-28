@@ -1,4 +1,4 @@
-const { HotModuleReplacementPlugin, DefinePlugin } = require('webpack');
+const { WatchIgnorePlugin, DefinePlugin } = require('webpack');
 const { resolve } = require('path');
 const baseConfig = require('./base');
 
@@ -41,20 +41,19 @@ module.exports = {
   resolve: baseConfig.resolve,
   plugins: [
     ...baseConfig.plugins,
-    new HotModuleReplacementPlugin(),
-    // new WatchIgnorePlugin([
-    //   root('node_modules'),
-    //   root('server'),
-    //   root('build'),
-    //   root('dist')
-    // ]),
+    new WatchIgnorePlugin({
+      paths: [
+        root('node_modules'),
+        root('server'),
+        root('build'),
+        root('dist')
+      ] }),
     new DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })
   ],
   devServer: {
     compress: true,
-    // hot: true,
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
