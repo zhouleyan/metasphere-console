@@ -1,7 +1,31 @@
 {
   "presets": [
     [
-      "@babel/preset-env"
+      "@babel/preset-env",
+      {
+        "corejs": "3",
+        "useBuiltIns": "entry",
+        "targets": ["> 5%", "ie 9"],
+        "modules": "commonjs",
+        "exclude": ["proposal-dynamic-import"]
+      }
+    ],
+    "@babel/preset-react",
+    [
+      "@babel/preset-typescript",
+      {
+        "isTSX": true,
+        "allExtensions": true
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
     ]
   ]
 }

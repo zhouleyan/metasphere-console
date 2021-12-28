@@ -1,3 +1,5 @@
+<% var bundlePrefix=isDev ? '//' + hostname + ':8001' : '/dist' %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,5 +24,10 @@
 <script type="text/javascript">
     <%- include('dummy.js') %>
 </script>
+<% if (manifest && manifest.assets && manifest.assets.js && manifest.assets.js.length > 0) { %>
+    <% manifest.assets.js.forEach(function (item) { %>
+        <script type="text/javascript" src="<%= bundlePrefix %>/<%= item %>" ></script>
+    <% }) %>
+<% } %>
 </body>
 </html>

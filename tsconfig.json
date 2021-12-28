@@ -33,10 +33,6 @@
     ],
     "skipLibCheck": false
   },
-  "include": [
-    "packages",
-    "stories"
-  ],
   "exclude": [
     "**/node_modules",
     "**/dist"

@@ -6,3 +6,12 @@
 /**
  * @name title
  */
+/**
+ * @name isDev
+ */
+/**
+ * @name hostname
+ */
+/**
+ * @name manifest
+ */
