@@ -27,6 +27,7 @@
     "lint:style": "stylelint --fix \"{src,server}/**/*.{css,less}\"",
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx {src,server} && yarn lint:style",
     "tsc": "tsc",
+    "plop": "plop --plopfile scripts/plopfile.js",
     "test": "yarn jest"
   },
   "devDependencies": {

@@ -13,6 +13,6 @@ module.exports = {
     'plugin/declaration-block-no-ignored-properties': true,
     'unit-no-unknown': [true, { ignoreUnits: ['rpx'] }],
   },
-  ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.tsx', '**/*.ts', '**/*.md', '**/*.html', '**/*.ejs'],
+  ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.tsx', '**/*.ts', '**/*.md', '**/*.html', '**/*.ejs', '**/*.hbs'],
   customSyntax: require('postcss-less')
 };

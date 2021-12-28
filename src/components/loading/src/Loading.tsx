@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoadingProps } from 'components/types/loading';
+import { LoadingProps } from '../types';
 import { DOMRef } from 'components/types/shared';
 import { useDOMRef } from 'components/utils';
 

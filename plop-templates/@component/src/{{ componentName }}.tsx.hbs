@@ -1,0 +1,17 @@
+import React from 'react';
+import { {{componentName}}Props } from '../types';
+import { DOMRef } from 'components/types/shared';
+import { useDOMRef } from 'components/utils';
+
+function {{componentName}}(props: {{componentName}}Props, ref: DOMRef<HTMLDivElement>) {
+  let domRef = useDOMRef(ref);
+
+  return (
+    <div ref={domRef}>
+      {{componentName}}
+    </div>
+  );
+}
+
+let _{{componentName}} = React.forwardRef({{componentName}});
+export { _{{componentName}} as {{componentName}} };
