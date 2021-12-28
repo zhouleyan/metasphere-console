@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "paths": {
+      "components/*": ["src/components/*"]
+    },
     // We can explicitly declare `any`, but we don't want to infer `any`
     "noImplicitAny": false,
     // Maybe bump to 'esNext'?
