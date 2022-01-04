@@ -9,7 +9,7 @@ function Loading(props: LoadingProps, ref: DOMRef<HTMLDivElement>) {
   let domRef = useDOMRef(ref);
 
   return (
-    <div ref={domRef}>
+    <div className="ms-loading" ref={domRef}>
       loading...
       {children}
     </div>

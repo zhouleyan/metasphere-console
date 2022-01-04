@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+html {
+  overflow-y: visible; // overwrite overflow from minireset
+  margin-right: calc(100% - 100vw); // fix jumping scrollbar
+  background-color: cornflowerblue;
+  height: 100%;
+}

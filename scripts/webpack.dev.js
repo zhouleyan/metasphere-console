@@ -16,7 +16,52 @@ module.exports = {
   devtool: 'eval-cheap-module-source-map',
   module: {
     rules: [
-      ...baseConfig.moduleRules
+      ...baseConfig.moduleRules,
+      {
+        test: /\.s[ac]ss$/i,
+        include: root('src'),
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                mode: 'local',
+                auto: true,
+                localIdentName: '[path][name]__[local]'
+              }
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        include: root('node_modules'),
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(ttf|otf|eot|woff2?)(\?.+)?$/,
+        include: root('src/assets'),
+        use: {
+          loader: 'file-loader'
+        }
+      }
     ]
   },
   optimization: {
