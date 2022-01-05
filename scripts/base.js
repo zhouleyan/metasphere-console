@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 const autoprefixer = require('autoprefixer');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
-// const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development';
 const root = (path) => resolve(__dirname, `../${path}`);
 
 module.exports = {
@@ -16,7 +16,8 @@ module.exports = {
         {
           loader: 'babel-loader',
           options: {
-            cacheDirectory: true
+            cacheDirectory: true,
+            plugins: isDev ? [require.resolve('react-refresh/babel')] : []
           }
         }
       ]

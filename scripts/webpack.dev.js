@@ -1,4 +1,5 @@
-const { WatchIgnorePlugin, DefinePlugin } = require('webpack');
+const { HotModuleReplacementPlugin, WatchIgnorePlugin, DefinePlugin } = require('webpack');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { resolve } = require('path');
 const baseConfig = require('./base');
 
@@ -84,6 +85,8 @@ module.exports = {
   resolve: baseConfig.resolve,
   plugins: [
     ...baseConfig.plugins,
+    new HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin({ overlay: false }),
     new WatchIgnorePlugin({
       paths: [
         root('node_modules'),
@@ -102,5 +105,11 @@ module.exports = {
     },
     host: '0.0.0.0',
     port: 8001
+  },
+  cache: {
+    type: 'filesystem',
+    buildDependencies: {
+      config: [__filename]
+    }
   }
 };
