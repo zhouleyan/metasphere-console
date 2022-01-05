@@ -5,9 +5,8 @@ const get = require('lodash/get');
 const merge = require('lodash/merge');
 const isEmpty = require('lodash/isEmpty');
 const pick = require('lodash/pick');
-const path = require('path');
 
-const APP_ROOT = path.resolve(__dirname, '../../');
+const APP_ROOT = process.cwd();
 const root = (dir) => `${APP_ROOT}/${dir}`.replace(/(\/+)/g, '/');
 
 const cache = global._msCache || new NodeCache();

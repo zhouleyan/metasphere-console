@@ -111,4 +111,6 @@ dist
 .tern-port
 
 # local config
-/server/local_config.yaml
+server/local_config.yaml
+
+server/server.js

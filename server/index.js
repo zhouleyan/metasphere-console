@@ -10,7 +10,6 @@ const routes = require('./routes');
 
 const boot = require('./components/boot');
 
-
 global.MODE_DEV = process.env.NODE_ENV === 'development';
 
 Koa.prototype.apply = function (module, ...rest) {
