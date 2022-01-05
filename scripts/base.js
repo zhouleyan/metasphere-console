@@ -28,6 +28,11 @@ module.exports = {
       use: [
         { loader: '@svgr/webpack', options: { icon: true } }
       ]
+    },
+    {
+      test: /\.(jpg|png|svg)(\?.+)?$/,
+      include: root('src/assets'),
+      type: 'asset/inline'
     }
   ],
   resolve: {
