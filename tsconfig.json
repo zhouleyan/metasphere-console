@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "paths": {
-      "components/*": ["src/components/*"]
+      "components/*": ["src/components/*"],
+      "assets/*": ["src/assets/*"]
     },
     // We can explicitly declare `any`, but we don't want to infer `any`
     "noImplicitAny": false,

@@ -21,10 +21,17 @@ module.exports = {
           }
         }
       ]
+    },
+    {
+      test: /\.svg$/,
+      issuer: [/\.tsx?$/],
+      use: [
+        { loader: '@svgr/webpack', options: { icon: true } }
+      ]
     }
   ],
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss', '.svg'],
     symlinks: false,
     modules: [root('src'), 'node_modules']
   },
