@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+const autoprefixer = require('autoprefixer');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 // const isDev = process.env.NODE_ENV === 'development';
 const root = (path) => resolve(__dirname, `../${path}`);
@@ -32,5 +33,17 @@ module.exports = {
       writeToDisk: true,
       output: '../dist/manifest.json'
     })
-  ]
+  ],
+  postcssOptions: {
+    ident: 'postcss',
+    plugins: () => [
+      require('postcss-flexbugs-fixes'),
+      autoprefixer(
+        ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
+        {
+          flexbox: 'no-2009'
+        }
+      )
+    ]
+  }
 };

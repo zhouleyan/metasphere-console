@@ -58,9 +58,7 @@ module.exports = {
       {
         test: /\.(ttf|otf|eot|woff2?)(\?.+)?$/,
         include: root('src/assets'),
-        use: {
-          loader: 'file-loader'
-        }
+        type: 'asset/resource'
       }
     ]
   },
