@@ -99,6 +99,9 @@ module.exports = {
     })
   ],
   devServer: {
+    client: {
+      overlay: true
+    },
     compress: true,
     headers: {
       'Access-Control-Allow-Origin': '*'
