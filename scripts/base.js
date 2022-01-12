@@ -23,16 +23,17 @@ module.exports = {
       ]
     },
     {
-      test: /\.svg$/,
-      issuer: [/\.tsx?$/],
+      test: /\.(jpg|png|svg)(\?.+)?$/,
+      include: root('src/assets'),
+      type: 'asset',
+      resourceQuery: /url/ // *.svg?url
+    },
+    {
+      test: /\.svg$/i,
+      issuer: [/\.[jt]sx?$/],
       use: [
         { loader: '@svgr/webpack', options: { icon: true } }
       ]
-    },
-    {
-      test: /\.(jpg|png|svg)(\?.+)?$/,
-      include: root('src/assets'),
-      type: 'asset/inline'
     }
   ],
   resolve: {
