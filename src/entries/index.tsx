@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import { Loading } from '../components/loading';
+import { Loading } from 'components/loading';
+import { LocaleProvider } from 'components/locale-provider';
 import { App } from '../core/App';
 
 // handle safari browser zoom out too small
@@ -19,7 +20,9 @@ window.onresize = () => {
 const render = (component: JSX.Element) => {
   ReactDOM.render(
     <Suspense fallback={<Loading />}>
-      {component}
+      <LocaleProvider locale="zh-CN">
+        {component}
+      </LocaleProvider>
     </Suspense>,
     document.getElementById('root')
   );
