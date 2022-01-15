@@ -169,6 +169,7 @@ module.exports = {
   getManifest,
   getLocaleManifest,
   isValidReferer,
+  safeParseJSON,
   APP_ROOT,
   HOSTNAME,
   PORT,

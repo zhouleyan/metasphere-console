@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const autoprefixer = require('autoprefixer');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
+const WebpackBar = require('webpackbar');
 const isDev = process.env.NODE_ENV === 'development';
 const root = (path) => resolve(__dirname, `../${path}`);
 
@@ -46,7 +47,8 @@ module.exports = {
       entrypoints: true,
       writeToDisk: true,
       output: '../dist/manifest.json'
-    })
+    }),
+    new WebpackBar()
   ],
   postcssOptions: {
     ident: 'postcss',
