@@ -11,5 +11,5 @@ module.exports = {
   info,
   error,
   green,
-  bold
+  bold,
 };

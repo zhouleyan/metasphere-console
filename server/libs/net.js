@@ -15,5 +15,5 @@ const getNetworkAddress = () => {
 
 module.exports = {
   interfaces,
-  getNetworkAddress
+  getNetworkAddress,
 };

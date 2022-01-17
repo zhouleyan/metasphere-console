@@ -1,4 +1,8 @@
-const { HotModuleReplacementPlugin, WatchIgnorePlugin, DefinePlugin } = require('webpack');
+const {
+  HotModuleReplacementPlugin,
+  WatchIgnorePlugin,
+  DefinePlugin,
+} = require('webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { resolve } = require('path');
 const baseConfig = require('./base');
@@ -12,7 +16,7 @@ module.exports = {
     filename: '[name].js',
     path: root('dist/'),
     publicPath: '/',
-    pathinfo: false
+    pathinfo: false,
   },
   devtool: 'eval-cheap-module-source-map',
   module: {
@@ -30,19 +34,19 @@ module.exports = {
               modules: {
                 mode: 'local',
                 auto: true,
-                localIdentName: '[path][name]__[local]'
-              }
-            }
+                localIdentName: '[path][name]__[local]',
+              },
+            },
           },
           {
-            loader: 'sass-loader'
-          }
-        ]
+            loader: 'sass-loader',
+          },
+        ],
       },
       {
         test: /\.s[ac]ss$/i,
         include: root('node_modules'),
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.css$/,
@@ -51,17 +55,17 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 2
-            }
-          }
-        ]
+              importLoaders: 2,
+            },
+          },
+        ],
       },
       {
         test: /\.(ttf|otf|eot|woff2?)(\?.+)?$/,
         include: root('src/assets'),
-        type: 'asset/resource'
-      }
-    ]
+        type: 'asset/resource',
+      },
+    ],
   },
   optimization: {
     usedExports: true,
@@ -72,15 +76,15 @@ module.exports = {
         vendors: {
           test: /[\\/]node_modules[\\/](?!(ace-builds|react-ace|xterm)).*.jsx?$/,
           name: 'vendor',
-          priority: 10
+          priority: 10,
         },
         common: {
           name: 'common',
           minChunks: 2,
-          minSize: 30000
-        }
-      }
-    }
+          minSize: 30000,
+        },
+      },
+    },
   },
   resolve: baseConfig.resolve,
   plugins: [
@@ -92,27 +96,28 @@ module.exports = {
         root('node_modules'),
         root('server'),
         root('build'),
-        root('dist')
-      ] }),
+        root('dist'),
+      ],
+    }),
     new DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    })
+      'process.env.NODE_ENV': JSON.stringify('development'),
+    }),
   ],
   devServer: {
     client: {
-      overlay: true
+      overlay: true,
     },
     compress: true,
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
     },
     host: '0.0.0.0',
-    port: 8001
+    port: 8001,
   },
   cache: {
     type: 'filesystem',
     buildDependencies: {
-      config: [__filename]
-    }
-  }
+      config: [__filename],
+    },
+  },
 };

@@ -15,14 +15,15 @@ if (!fs.existsSync(outputPath)) {
 }
 
 locales.forEach((locale) => {
-  const content = files.filter((file) => locale === basename(file, '.json'))
-      .reduce(
-        (prev, cur) => ({
-          ...prev,
-          ...safeParseJSON(fs.readFileSync(cur, 'utf8'), {})
-        }),
-        {}
-      );
+  const content = files
+    .filter((file) => locale === basename(file, '.json'))
+    .reduce(
+      (prev, cur) => ({
+        ...prev,
+        ...safeParseJSON(fs.readFileSync(cur, 'utf8'), {}),
+      }),
+      {}
+    );
   fs.writeFileSync(
     join(outputPath, `locale-${locale}.json`),
     JSON.stringify(content)

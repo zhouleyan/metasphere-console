@@ -1,8 +1,6 @@
 const Router = require('@koa/router');
 
-const {
-  renderView
-} = require('./controllers/view');
+const { renderView } = require('./controllers/view');
 
 const router = new Router();
 

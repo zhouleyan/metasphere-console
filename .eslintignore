@@ -2,3 +2,4 @@ node_modules
 dist
 plop-templates
 .stylelintrc.js
+server/server.js

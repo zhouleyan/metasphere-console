@@ -6,20 +6,17 @@ import { isRTL } from 'components/locale-provider/src/utils';
 const I18nContext = React.createContext<Locale>(null);
 
 export function LocaleProvider(props: LocaleProviderProps) {
-
   const { locale, children } = props;
-  const defaultLocale = useDefaultLocale();
+  let value = useDefaultLocale();
 
-  const value: Locale = locale ? {
-    locale,
-    direction: isRTL(locale) ? 'rtl' : 'ltr'
-  } : defaultLocale;
+  if (locale) {
+    value = {
+      locale,
+      direction: isRTL(locale) ? 'rtl' : 'ltr',
+    };
+  }
 
-  return (
-    <I18nContext.Provider value={value}>
-      {children}
-    </I18nContext.Provider>
-  );
+  return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
 
 /**

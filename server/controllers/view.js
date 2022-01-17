@@ -11,10 +11,10 @@ const renderIndex = async (ctx) => {
     isDev: global.MODE_DEV,
     title: getTitle(),
     hostname: ctx.hostname,
-    favicon: '/assets/favicon.ico'
+    favicon: '/assets/favicon.ico',
   });
 };
 
 module.exports = {
-  renderView
+  renderView,
 };

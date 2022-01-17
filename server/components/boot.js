@@ -10,7 +10,7 @@ module.exports = function (app) {
   app.use(
     compress({
       threshold: 2048,
-      flush: constants.Z_SYNC_FLUSH
+      flush: constants.Z_SYNC_FLUSH,
     })
   );
 
@@ -38,6 +38,6 @@ module.exports = function (app) {
     root: root('server/views'),
     cache: !global.MODE_DEV,
     layout: false,
-    viewExt: 'ejs'
+    viewExt: 'ejs',
   });
 };

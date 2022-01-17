@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const http = require('http');
 const boxen = require('boxen');
-const { info, warning, error, green, bold } =  require('./libs/logs');
+const { info, warning, error, green, bold } = require('./libs/logs');
 const { registerShutdown } = require('./libs/sys');
 const { getNetworkAddress } = require('./libs/net');
 const { PORT, HTTP_MODE } = require('./libs/utils');
@@ -21,14 +21,11 @@ const app = new Koa();
 
 app.keys = ['ms->_<'];
 
-app
-  .apply(boot)
-  .use(routes.routes());
+app.apply(boot).use(routes.routes());
 
 const server = http.createServer(app.callback());
 
 server.listen(PORT, (err) => {
-
   registerShutdown(() => server.close());
 
   const details = server.address();
@@ -61,13 +58,14 @@ server.listen(PORT, (err) => {
     return error(err);
   }
   /* eslint-disable no-console */
-  console.log(boxen(message, {
-    padding: 1,
-    borderColor: 'green',
-    margin: 1
-  }));
+  console.log(
+    boxen(message, {
+      padding: 1,
+      borderColor: 'green',
+      margin: 1,
+    })
+  );
 });
-
 
 (() => {
   registerShutdown(() => {

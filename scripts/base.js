@@ -7,7 +7,7 @@ const root = (path) => resolve(__dirname, `../${path}`);
 
 module.exports = {
   entry: {
-    main: './src/entries/index.tsx'
+    main: './src/entries/index.tsx',
   },
   moduleRules: [
     {
@@ -18,48 +18,43 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             cacheDirectory: true,
-            plugins: isDev ? [require.resolve('react-refresh/babel')] : []
-          }
-        }
-      ]
+            plugins: isDev ? [require.resolve('react-refresh/babel')] : [],
+          },
+        },
+      ],
     },
     {
       test: /\.(jpg|png|svg)(\?.+)?$/,
       include: root('src/assets'),
       type: 'asset',
-      resourceQuery: /url/ // *.svg?url
+      resourceQuery: /url/, // *.svg?url
     },
     {
       test: /\.svg$/i,
       issuer: [/\.[jt]sx?$/],
-      use: [
-        { loader: '@svgr/webpack', options: { icon: true } }
-      ]
-    }
+      use: [{ loader: '@svgr/webpack', options: { icon: true } }],
+    },
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss', '.svg'],
     symlinks: false,
-    modules: [root('src'), 'node_modules']
+    modules: [root('src'), 'node_modules'],
   },
   plugins: [
     new WebpackAssetsManifest({
       entrypoints: true,
       writeToDisk: true,
-      output: '../dist/manifest.json'
+      output: '../dist/manifest.json',
     }),
-    new WebpackBar()
+    new WebpackBar(),
   ],
   postcssOptions: {
     ident: 'postcss',
     plugins: () => [
       require('postcss-flexbugs-fixes'),
-      autoprefixer(
-        ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
-        {
-          flexbox: 'no-2009'
-        }
-      )
-    ]
-  }
+      autoprefixer(['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'], {
+        flexbox: 'no-2009',
+      }),
+    ],
+  },
 };

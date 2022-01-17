@@ -20,9 +20,7 @@ window.onresize = () => {
 const render = (component: JSX.Element) => {
   ReactDOM.render(
     <Suspense fallback={<Loading />}>
-      <LocaleProvider locale="zh-CN">
-        {component}
-      </LocaleProvider>
+      <LocaleProvider locale="zh-CN">{component}</LocaleProvider>
     </Suspense>,
     document.getElementById('root')
   );
@@ -32,7 +30,7 @@ render(<App />);
 
 // @ts-ignore
 module.hot &&
-// @ts-ignore
+  // @ts-ignore
   module.hot.accept('../core/App', () => {
     const NextApp = require('../core/App');
     render(<NextApp />);

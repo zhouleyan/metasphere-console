@@ -94,7 +94,7 @@ const getPort = () => {
 };
 
 const getHttpStatic = () => {
-  const { 'static': httpStatic } = getHttp();
+  const { static: httpStatic } = getHttp();
   if (httpStatic && typeof httpStatic === 'object') {
     return httpStatic;
   }
@@ -146,10 +146,7 @@ const getLocaleManifest = () => {
       // eslint-disable-next-line no-empty
     } catch (error) {}
     const isLocale = (key) => key.startsWith('locale-');
-    manifestCache = pick(
-      data,
-      Object.keys(data).filter(isLocale)
-    );
+    manifestCache = pick(data, Object.keys(data).filter(isLocale));
     cache.set(LOCALE_MANIFEST_CACHE_KEY, manifestCache);
   }
 
@@ -173,5 +170,5 @@ module.exports = {
   APP_ROOT,
   HOSTNAME,
   PORT,
-  HTTP_MODE
+  HTTP_MODE,
 };

@@ -4,95 +4,129 @@ const ERROR = 2;
 
 module.exports = {
   plugins: ['react', 'jsx-a11y', 'react-hooks', 'jest'],
-  extends: ['eslint:recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:prettier/recommended',
+  ],
   parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaFeatures: {
-      'legacyDecorators': true
+      legacyDecorators: true,
     },
-    sourceType: 'module'
+    sourceType: 'module',
   },
   overrides: [
     {
       files: ['src/**/*.@(ts|tsx)'],
-      plugins: ['react', 'jsx-a11y', 'react-hooks', 'jest', '@typescript-eslint', 'jsdoc'],
+      plugins: [
+        'react',
+        'jsx-a11y',
+        'react-hooks',
+        'jest',
+        '@typescript-eslint',
+        'jsdoc',
+      ],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaFeatures: {
-          'jsx': true,
-          'legacyDecorators': true
+          jsx: true,
+          legacyDecorators: true,
         },
-        'useJSXTextNode': true,
-        'project': './tsconfig.json',
-        sourceType: 'module'
+        useJSXTextNode: true,
+        project: './tsconfig.json',
+        sourceType: 'module',
       },
       rules: {
-        'jsdoc/require-description-complete-sentence': [ERROR, { abbreviations: ['e.g', 'etc'], tags: ['deprecated'] }],
+        'jsdoc/require-description-complete-sentence': [
+          ERROR,
+          { abbreviations: ['e.g', 'etc'], tags: ['deprecated'] },
+        ],
         'jsdoc/check-alignment': ERROR,
         'jsdoc/check-indentation': ERROR,
         'jsdoc/check-tag-names': ERROR,
-                // enable this rule to see literally everything missing jsdocs, this rule needs some refinement but is good as a sanity check.
-                // 'jsdoc/require-jsdoc': [ERROR, {contexts:['TSInterfaceDeclaration TSPropertySignature', 'TSInterfaceDeclaration TSMethodSignature']}],
-        'jsdoc/require-description': [ERROR, { exemptedBy: ['deprecated'], checkConstructors: false }],
+        // enable this rule to see literally everything missing jsdocs, this rule needs some refinement but is good as a sanity check.
+        // 'jsdoc/require-jsdoc': [ERROR, {contexts:['TSInterfaceDeclaration TSPropertySignature', 'TSInterfaceDeclaration TSMethodSignature']}],
+        'jsdoc/require-description': [
+          ERROR,
+          { exemptedBy: ['deprecated'], checkConstructors: false },
+        ],
         'no-redeclare': OFF,
         '@typescript-eslint/no-redeclare': ERROR,
         'no-unused-vars': OFF,
         '@typescript-eslint/no-unused-vars': ERROR,
-        '@typescript-eslint/member-delimiter-style': [ERROR, {
-          multiline: {
-            delimiter: 'semi',
-            requireLast: true
+        '@typescript-eslint/member-delimiter-style': [
+          ERROR,
+          {
+            multiline: {
+              delimiter: 'semi',
+              requireLast: true,
+            },
+            singleline: {
+              delimiter: 'semi',
+              requireLast: true,
+            },
           },
-          singleline: {
-            delimiter: 'semi',
-            requireLast: true
-          }
-        }]
-      }
-    }
+        ],
+      },
+    },
   ],
   env: {
-    'browser': true,
-    'node': true,
-    'mocha': true,
-    'es6': true,
-    'jest': true
+    browser: true,
+    node: true,
+    mocha: true,
+    es6: true,
+    jest: true,
   },
   globals: {
-    'jest': true,
-    'expect': true,
-    'JSX': 'readonly',
-    'NodeJS': 'readonly',
-    'AsyncIterable': 'readonly'
+    jest: true,
+    expect: true,
+    JSX: 'readonly',
+    NodeJS: 'readonly',
+    AsyncIterable: 'readonly',
+  },
+  settings: {
+    jsdoc: {
+      ignorePrivate: true,
+      publicFunctionsOnly: true,
+    },
+    react: {
+      version: 'detect',
+    },
   },
   rules: {
-    'comma-dangle': ERROR,
-    'indent': OFF,
+    indent: OFF,
     'indent-legacy': [ERROR, ERROR, { SwitchCase: 1 }],
-    'quotes': [ERROR, 'single', 'avoid-escape'],
+    quotes: [ERROR, 'single', 'avoid-escape'],
     'linebreak-style': [ERROR, 'unix'],
-    'semi': [ERROR, 'always'],
-    'space-before-function-paren': [ERROR, { anonymous: 'always', named: 'never', asyncArrow: 'ignore' }],
+    semi: [ERROR, 'always'],
+    'space-before-function-paren': [
+      ERROR,
+      { anonymous: 'always', named: 'never', asyncArrow: 'ignore' },
+    ],
     'keyword-spacing': [ERROR, { after: true }],
     'jsx-quotes': [ERROR, 'prefer-double'],
     'brace-style': [ERROR, '1tbs', { allowSingleLine: true }],
     'object-curly-spacing': [ERROR, 'always'],
-    'curly': ERROR,
+    curly: ERROR,
     'no-fallthrough': OFF,
     'comma-spacing': ERROR,
     'comma-style': [ERROR, 'last'],
     'no-irregular-whitespace': [ERROR],
-    'eqeqeq': [ERROR, 'smart'],
+    eqeqeq: [ERROR, 'smart'],
     'no-spaced-func': ERROR,
     'array-bracket-spacing': [ERROR, 'never'],
     'key-spacing': [ERROR, { beforeColon: false, afterColon: true }],
     'no-console': OFF,
-    'no-unused-vars': [ERROR, { args: 'none', vars: 'all', varsIgnorePattern: '[rR]eact' }],
+    'no-unused-vars': [
+      ERROR,
+      { args: 'none', vars: 'all', varsIgnorePattern: '[rR]eact' },
+    ],
     'space-in-parens': [ERROR, 'never'],
     'space-unary-ops': [ERROR, { words: true, nonwords: false }],
     'spaced-comment': [ERROR, 'always', { exceptions: ['*'], markers: ['/'] }],
     'max-depth': [WARN, 4],
-    'radix': [ERROR, 'always'],
+    radix: [ERROR, 'always'],
     'react/jsx-uses-react': WARN,
     'eol-last': ERROR,
     'arrow-body-style': [ERROR, 'as-needed'],
@@ -106,7 +140,7 @@ module.exports = {
     'no-multiple-empty-lines': ERROR,
     'no-unneeded-ternary': ERROR,
 
-        // Below are rules that are needed for linter functionality when using React
+    // Below are rules that are needed for linter functionality when using React
     'react/display-name': OFF,
     'react/jsx-curly-spacing': [ERROR, 'never'],
     'react/jsx-indent-props': [ERROR, 2],
@@ -135,11 +169,11 @@ module.exports = {
     'react/jsx-first-prop-new-line': [ERROR, 'multiline'],
     'react/self-closing-comp': ERROR,
 
-        // hooks
+    // hooks
     'react-hooks/rules-of-hooks': ERROR,
     'react-hooks/exhaustive-deps': WARN,
 
-        // jsx-a11y rules
+    // jsx-a11y rules
     'jsx-a11y/accessible-emoji': ERROR,
     'jsx-a11y/alt-text': ERROR,
     'jsx-a11y/anchor-has-content': ERROR,
@@ -164,16 +198,16 @@ module.exports = {
           'searchbox',
           'spinbutton',
           'switch',
-          'textbox'
-        ]
-      }
+          'textbox',
+        ],
+      },
     ],
     'jsx-a11y/label-has-associated-control': [
       ERROR,
       {
-        'assert': 'either',
-        'depth': 3
-      }
+        assert: 'either',
+        depth: 3,
+      },
     ],
     'jsx-a11y/media-has-caption': ERROR,
     'jsx-a11y/mouse-events-have-key-events': ERROR,
@@ -189,9 +223,9 @@ module.exports = {
           'onMouseUp',
           'onKeyPress',
           'onKeyDown',
-          'onKeyUp'
-        ]
-      }
+          'onKeyUp',
+        ],
+      },
     ],
     'jsx-a11y/no-noninteractive-element-to-interactive-role': [
       ERROR,
@@ -203,7 +237,7 @@ module.exports = {
           'radiogroup',
           'tablist',
           'tree',
-          'treegrid'
+          'treegrid',
         ],
         ol: [
           'listbox',
@@ -212,20 +246,20 @@ module.exports = {
           'radiogroup',
           'tablist',
           'tree',
-          'treegrid'
+          'treegrid',
         ],
         li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
         table: ['grid'],
         td: ['gridcell', 'columnheader', 'rowheader'],
-        th: ['columnheader', 'rowheader']
-      }
+        th: ['columnheader', 'rowheader'],
+      },
     ],
     'jsx-a11y/no-noninteractive-tabindex': [
       ERROR,
       {
         tags: [],
-        roles: ['alertdialog', 'dialog', 'tabpanel']
-      }
+        roles: ['alertdialog', 'dialog', 'tabpanel'],
+      },
     ],
     'jsx-a11y/no-redundant-roles': ERROR,
     'jsx-a11y/no-static-element-interactions': [
@@ -237,13 +271,13 @@ module.exports = {
           'onMouseUp',
           'onKeyPress',
           'onKeyDown',
-          'onKeyUp'
-        ]
-      }
+          'onKeyUp',
+        ],
+      },
     ],
     'jsx-a11y/role-has-required-aria-props': ERROR,
     'jsx-a11y/role-supports-aria-props': ERROR,
     'jsx-a11y/scope': ERROR,
-    'jsx-a11y/tabindex-no-positive': ERROR
-  }
+    'jsx-a11y/tabindex-no-positive': ERROR,
+  },
 };

@@ -19,14 +19,15 @@ module.exports = function (plop) {
         type: 'input',
         name: 'packageName',
         message: 'package name, all lowercase (e.g. button, textfield)',
-        validate: (answer) => answer.length > 0
+        validate: (answer) => answer.length > 0,
       },
       {
         type: 'input',
         name: 'componentName',
-        message: 'component name, please use appropriate uppercase (e.g. Button, TextField)',
-        validate: (answer) => answer.length > 0
-      }
+        message:
+          'component name, please use appropriate uppercase (e.g. Button, TextField)',
+        validate: (answer) => answer.length > 0,
+      },
     ],
     actions: function (data) {
       const { packageName, componentName } = data;
@@ -37,10 +38,10 @@ module.exports = function (plop) {
         templateFiles: '../plop-templates/@component/**',
         base: '../plop-templates/@component/',
         destination: `../src/components/${packageName}`,
-        data: { packageName, componentName }
+        data: { packageName, componentName },
       });
 
       return actions;
-    }
+    },
   });
 };

@@ -14,5 +14,5 @@ const registerShutdown = (fn) => {
 };
 
 module.exports = {
-  registerShutdown
+  registerShutdown,
 };
