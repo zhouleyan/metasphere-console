@@ -10,10 +10,8 @@ import { isRTL } from 'components/locale-provider/src/utils';
  */
 export function getDefaultLocale(): Locale {
   // @ts-ignore
-  const locale =
-    (typeof navigator !== 'undefined' &&
-      (navigator.language || navigator.userLanguage)) ||
-    'zh-CN';
+  // eslint-disable-next-line prettier/prettier
+  const locale = (typeof navigator !== 'undefined' && (navigator.language || navigator.userLanguage)) || 'zh-CN';
   return {
     locale,
     direction: isRTL(locale) ? 'rtl' : 'ltr',
