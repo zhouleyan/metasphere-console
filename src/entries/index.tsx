@@ -4,6 +4,8 @@ import { Loading } from 'components/loading';
 import { LocaleProvider } from 'components/locale-provider';
 import { App } from '../core/App';
 
+import { request } from 'utils/request';
+
 // handle safari browser zoom out too small
 window.onresize = () => {
   const ratio = window.outerHeight / window.innerHeight;
@@ -16,6 +18,9 @@ window.onresize = () => {
     document.body.style.zoom = 1;
   }
 };
+
+// @ts-ignore
+window.request = request;
 
 const render = (component: JSX.Element) => {
   ReactDOM.render(
