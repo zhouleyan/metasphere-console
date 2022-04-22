@@ -3,3 +3,4 @@ dist
 plop-templates
 .stylelintrc.js
 server/server.js
+scripts/*.d.ts
